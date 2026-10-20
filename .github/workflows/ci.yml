@@ -35,6 +35,7 @@ jobs:
            with:
               toolchain: '1.94.0'
               components: rustfmt, clippy
+              target: aarch64-linux-android
               cache: true
 
          - name: Install npm dependencies
@@ -58,6 +59,13 @@ jobs:
 
          - name: Run cargo check
            run: cargo check --workspace --all-targets
+
+         - name: Run Android cargo check
+           run: |
+              ndk_bin="$ANDROID_NDK_LATEST_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin"
+              export CC_aarch64_linux_android="$ndk_bin/aarch64-linux-android24-clang"
+              export AR_aarch64_linux_android="$ndk_bin/llvm-ar"
+              cargo check --lib --target aarch64-linux-android
 
          - name: Run TypeScript and Rust tests
            run: npm test
