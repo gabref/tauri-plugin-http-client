@@ -22,7 +22,7 @@ tracing = { version = "0.1.41", default-features = false, features = ["std", "lo
 url = "2.5.4"
 
 [target.'cfg(target_os = "android")'.dependencies]
-webpki-root-certs = "1.0.8"
+webpki-root-certs = "1.0.10"
 
 [dev-dependencies]
 tokio = { version = "1.45.1", features = ["rt-multi-thread", "macros", "time"] }
